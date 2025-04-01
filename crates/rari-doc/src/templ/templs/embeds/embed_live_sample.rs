@@ -56,7 +56,7 @@ pub fn embed_live_sample(
     out.push_str(r#"sandbox=""#);
     if let Some(sandbox) = sandbox {
         let is_sane = sandbox.split_ascii_whitespace().all(|attr| {
-            if matches!(attr, "allow-modals" | "allow-forms" | "allow-popups") {
+            if matches!(attr, "allow-modals" | "allow-popups") {
                 true
             } else {
                 let ic = get_issue_counter();
@@ -68,6 +68,6 @@ pub fn embed_live_sample(
             out.extend([&sandbox, " "]);
         }
     }
-    out.push_str(r#"allow-same-origin allow-scripts" loading="lazy"></iframe></div>"#);
+    out.push_str(r#"allow-same-origin allow-scripts allow-forms" loading="lazy"></iframe></div>"#);
     Ok(out)
 }
